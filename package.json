@@ -21,6 +21,9 @@
     "sanity": "^4.22.0",
     "styled-components": "^6.3.8"
   },
+  "overrides": {
+    "@sanity/client": "^7.14.0"
+  },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
