@@ -1,6 +1,4 @@
-import { groq } from "groq";
-
-export const latestPostsQuery = groq`
+export const latestPostsQuery = `
   *[_type == "post"] | order(publishedAt desc) {
     _id,
     title,
@@ -14,7 +12,7 @@ export const latestPostsQuery = groq`
   }
 `;
 
-export const postBySlugQuery = groq`
+export const postBySlugQuery = `
   *[_type == "post" && slug.current == $slug][0] {
     _id,
     title,

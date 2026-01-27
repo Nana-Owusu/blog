@@ -36,17 +36,21 @@ export default async function NewsArticle({ params }: PageProps) {
     notFound();
   }
 
-  const heroImage = urlFor(post.mainImage)?.width(1400).height(800).fit("crop").url();
+  const heroImage = urlFor(post.mainImage)
+    ?.width(1600)
+    .height(900)
+    .fit("crop")
+    .url();
 
   return (
     <div className="page">
       <SiteHeader />
       <main className="shell article-shell">
-        <Link href="/" className="back-link">
+        <Link href="/news" className="back-link">
           ← Back to newsroom
         </Link>
-        <article>
-          <div className="article-hero">
+        <article className="article">
+          <div className="article-head">
             <div className="badges">
               {post.categories?.map((category) => (
                 <span key={category} className="badge">
@@ -55,24 +59,28 @@ export default async function NewsArticle({ params }: PageProps) {
               ))}
             </div>
             <h1 className="article-title">{post.title}</h1>
+            {post.excerpt ? (
+              <p className="article-excerpt">{post.excerpt}</p>
+            ) : null}
             <div className="article-meta">
               <span>{post.author?.name ?? "Signal Desk"}</span>
               <span>{post.author?.role ?? "Staff Writer"}</span>
               <span>{formatDate(post.publishedAt)}</span>
             </div>
-            {heroImage ? (
-              <div className="article-image">
-                <Image
-                  src={heroImage}
-                  alt={post.mainImage?.alt ?? ""}
-                  width={1400}
-                  height={800}
-                  style={{ width: "100%", height: "auto" }}
-                  priority
-                />
-              </div>
-            ) : null}
           </div>
+
+          {heroImage ? (
+            <div className="article-image">
+              <Image
+                src={heroImage}
+                alt={post.mainImage?.alt ?? ""}
+                width={1600}
+                height={900}
+                style={{ width: "100%", height: "auto" }}
+                priority
+              />
+            </div>
+          ) : null}
 
           <div className="prose">
             {post.body ? (

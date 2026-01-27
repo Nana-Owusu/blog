@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Newsreader, Space_Grotesk } from "next/font/google";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity/visual-editing";
+import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { SanityLive } from "@/lib/sanity.live";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
 
-const newsreader = Newsreader({
+const playfair = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
+const manrope = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],
 });
@@ -18,15 +22,20 @@ export const metadata: Metadata = {
     "A modern newsroom template powered by Next.js and Sanity for editorial publishing.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled } = await draftMode();
+
   return (
     <html lang="en">
-      <body className={`${newsreader.variable} ${spaceGrotesk.variable}`}>
+      <body className={`${playfair.variable} ${manrope.variable}`}>
         {children}
+        {isEnabled ? <DisableDraftMode /> : null}
+        <SanityLive />
+        {isEnabled ? <VisualEditing /> : null}
       </body>
     </html>
   );

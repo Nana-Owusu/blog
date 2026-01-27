@@ -14,7 +14,7 @@ export default function NotFound() {
           <p style={{ marginTop: "12px" }}>
             The story you are looking for is missing or unpublished.
           </p>
-          <Link href="/" className="btn btn-primary" style={{ marginTop: "20px" }}>
+          <Link href="/news" className="btn btn-primary" style={{ marginTop: "20px" }}>
             Return to newsroom
           </Link>
         </div>
