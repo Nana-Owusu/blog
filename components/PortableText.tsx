@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { PortableText as PortableTextRenderer } from "@portabletext/react";
 import type { PortableTextComponents } from "@portabletext/react";
+import type { TypedObject } from "@portabletext/types";
 import { urlFor } from "@/lib/sanity.image";
 import type { SanityImage } from "@/lib/sanity.types";
 
@@ -40,6 +41,6 @@ const components: PortableTextComponents = {
   },
 };
 
-export function PortableText({ value }: { value: unknown[] }) {
+export function PortableText({ value }: { value: TypedObject[] }) {
   return <PortableTextRenderer value={value} components={components} />;
 }

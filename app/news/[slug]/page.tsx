@@ -36,6 +36,8 @@ export default async function NewsArticle({ params }: PageProps) {
     notFound();
   }
 
+  const categories = post.categories ?? [];
+
   const heroImage = urlFor(post.mainImage)
     ?.width(1600)
     .height(900)
@@ -52,7 +54,7 @@ export default async function NewsArticle({ params }: PageProps) {
         <article className="article">
           <div className="article-head">
             <div className="badges">
-              {post.categories?.map((category) => (
+              {categories.map((category: string) => (
                 <span key={category} className="badge">
                   {category}
                 </span>

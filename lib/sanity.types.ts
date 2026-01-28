@@ -18,6 +18,8 @@ export type Author = {
   image?: SanityImage;
 };
 
+import type { TypedObject } from "@portabletext/types";
+
 export type Post = {
   _id: string;
   title: string;
@@ -27,5 +29,5 @@ export type Post = {
   mainImage?: SanityImage;
   categories?: string[];
   author?: Author;
-  body?: unknown[];
+  body?: TypedObject[];
 };

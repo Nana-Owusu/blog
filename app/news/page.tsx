@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PostCard } from "@/components/PostCard";
 import { getLatestPosts } from "@/lib/sanity.api";
 import { sanityConfigured } from "@/lib/sanity.client";
+import type { Post } from "@/lib/sanity.types";
 
 export const revalidate = 60;
 
@@ -38,7 +39,7 @@ export default async function NewsIndexPage() {
           </div>
         ) : (
           <div className="story-grid" style={{ marginTop: "32px" }}>
-            {posts.map((post) => (
+            {posts.map((post: Post) => (
               <PostCard key={post._id} post={post} />
             ))}
           </div>

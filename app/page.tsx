@@ -17,6 +17,8 @@ type FallbackItem = {
   excerpt: string;
 };
 
+type TrendingItem = Post | FallbackItem;
+
 const fallbackTrending: FallbackItem[] = [
   {
     title: "Markets brace for a new week of inflation signals",
@@ -153,7 +155,7 @@ export default async function Home() {
             <h3>Trending now</h3>
             <div className="trending-list">
               {(trending.length > 0 ? trending : fallbackTrending).map(
-                (item, index) => {
+                (item: TrendingItem, index: number) => {
                   if ("slug" in item) {
                     return (
                       <Link
@@ -197,7 +199,7 @@ export default async function Home() {
           <div className="story-grid">
             {(editorsPicks.length > 0 ? editorsPicks : [])
               .slice(0, 3)
-              .map((post) => (
+              .map((post: Post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             {editorsPicks.length === 0
@@ -240,7 +242,7 @@ export default async function Home() {
             </div>
           ) : (
             <div className="story-grid">
-              {latest.map((post) => (
+              {latest.map((post: Post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             </div>
@@ -256,7 +258,7 @@ export default async function Home() {
           </div>
           <div>
             {headlines.length > 0
-              ? headlines.map((post) => renderStoryRow(post))
+              ? headlines.map((post: Post) => renderStoryRow(post))
               : fallbackTrending.map((item, index) => (
                   <div key={`${item.title}-${index}`} className="story-row">
                     <div className="story-row-image" />
@@ -330,7 +332,7 @@ export default async function Home() {
           <div className="story-grid">
             {(around.length > 0 ? around : [])
               .slice(0, 3)
-              .map((post) => (
+              .map((post: Post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             {around.length === 0
@@ -367,7 +369,7 @@ export default async function Home() {
           <div className="story-grid">
             {(podcasts.length > 0 ? podcasts : [])
               .slice(0, 3)
-              .map((post) => (
+              .map((post: Post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             {podcasts.length === 0
